@@ -12,10 +12,14 @@
 | 2. Ядро + знакомство | Claude Code в терминале Cursor | «Просыпайся, JARVIS» — 9 сотрудников ядра; затем `/jarvis:setup` — интервью, правила, память, разбор ваших файлов, доктор, оргструктура | 20–35 мин |
 | 3. Отделы | там же, когда нужно | `/jarvis:hire` — маркетинг, продажи, дизайн, аналитика, Google, Higgsfield, сервер 24/7… только под вашу задачу | по запросу |
 
-Промпты — в папке [`prompts/`](prompts/):
-- `01-okruzhenie-windows.md` / `01-okruzhenie-mac.md`
-- `02-prosypaysya-jarvis.md`
-- `03-znakomstvo.md`
+Промпты — в папке [`prompts/`](prompts/). Длинные лежат файлами `.txt` (в чате длинный текст иногда обрезается), последняя строка каждого — «КОНЕЦ ЗАДАНИЯ». Короткие промпты запуска — в `00-zapusk.md`:
+- `01-okruzhenie-windows.txt` / `01-okruzhenie-mac.txt` — волна 1, агент Cursor, папка `Cursor\inbox`
+- `02-prosypaysya.txt` — волна 2, Claude Code, папка `Claude\inbox`
+- `03-znakomstvo.md` — команда `/jarvis:setup`
+
+## Две папки
+- `Cursor` (внутри `inbox`) — рабочее место агента Cursor;
+- `Claude` (внутри `inbox`) — дом JARVIS. Claude Code запускается так: File → Open Folder → `Claude` → View → Command Palette → «Claude Code: Open in Terminal». Папку потом не переименовывать: память привязана к пути.
 
 ## Что в ядре (одинаково для всех)
 
@@ -59,7 +63,7 @@ curl -fsSL https://raw.githubusercontent.com/ikigai-promotion-kz/jarvis/main/ins
 
 ## Что нужно до начала
 - Подписка Claude Pro, Max, Ultra, Team или Enterprise. Бесплатный план Claude Code не включает.
-- Установленный Cursor и открытая в нём рабочая папка (не Рабочий стол и не домашняя).
+- Установленный Cursor и две папки, например в Документах: `Cursor\inbox` и `Claude\inbox`.
 
 ## Чужое внутри
 JARVIS ничего не копирует к себе. Все сторонние скиллы и плагины ставятся из их собственных репозиториев на условиях их лицензий. Список и лицензии — [THIRD-PARTY.md](THIRD-PARTY.md).
