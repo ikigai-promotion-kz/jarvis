@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оргструктура J.A.R.V.I.S.</title>
+<style>
+  :root{
+    --bg:#050b14; --panel:rgba(12,32,52,.72); --line:#1d4a6b; --cyan:#4fd8ff; --cyan2:#9beaff;
+    --ok:#4fffb0; --warn:#ffc65c; --off:#5b7489; --text:#d8f3ff; --muted:#7fa6bd; --red:#ff4f6d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 700px at 70% -10%,#0d2a44 0%,var(--bg) 60%);color:var(--text);
+       font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;
+       background:repeating-linear-gradient(0deg,rgba(79,216,255,.035) 0 1px,transparent 1px 4px)}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 16px 60px}
+  header{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+  .core{width:170px;height:170px;position:relative}
+  .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--cyan);opacity:.85}
+  .ring.r2{inset:14px;border-style:dashed;border-color:var(--cyan2);animation:spin 18s linear infinite}
+  .ring.r3{inset:34px;border-width:6px;border-color:transparent var(--cyan) transparent var(--cyan);animation:spin 7s linear infinite reverse}
+  .ring.r4{inset:58px;background:radial-gradient(circle,#bff4ff 0%,var(--cyan) 35%,transparent 70%);border:none;animation:pulse 2.6s ease-in-out infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pulse{50%{opacity:.55;transform:scale(.92)}}
+  h1{margin:0;font-size:clamp(26px,4vw,44px);letter-spacing:.18em;font-weight:300;color:var(--cyan2)}
+  h1 b{font-weight:700;color:#fff}
+  .sub{margin:6px 0 14px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+  .owner{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{border:1px solid var(--line);background:var(--panel);padding:8px 12px;border-radius:4px;font-size:14px}
+  .chip span{color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block}
+  .mission{margin:26px 0 8px;padding:16px 18px;border-left:3px solid var(--cyan);background:var(--panel)}
+  .mission span{color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+  .mission p{margin:6px 0 0;font-size:18px}
+  .stats{display:flex;gap:18px;flex-wrap:wrap;margin:18px 0 26px;color:var(--muted);font-size:13px}
+  .stats b{color:var(--cyan2);font-size:22px;margin-right:6px}
+  h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin:30px 0 12px;font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .dept{position:relative;border:1px solid var(--line);background:var(--panel);padding:16px 16px 14px 46px;border-radius:4px;
+        clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%)}
+  .dept .box{position:absolute;left:14px;top:16px;width:20px;height:20px;border:2px solid var(--off);border-radius:3px}
+  .dept.on .box{border-color:var(--ok);background:var(--ok)}
+  .dept.on .box:after{content:"";position:absolute;left:5px;top:1px;width:6px;height:11px;border:solid #052;border-width:0 3px 3px 0;transform:rotate(45deg)}
+  .dept.later .box{border-color:var(--warn)}
+  .dept.off{opacity:.62}
+  .dept h3{margin:0 0 4px;font-size:16px}
+  .dept .st{font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+  .dept.on .st{color:var(--ok)} .dept.later .st{color:var(--warn)} .dept.off .st{color:var(--off)}
+  .dept p{margin:8px 0 0;color:#b6d9ea;font-size:14px;line-height:1.45}
+  .dept .who{margin-top:8px;font-size:12px;color:var(--muted)}
+  footer{margin-top:36px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:14px;line-height:1.6}
+  code{color:var(--cyan2)}
+  @media (max-width:640px){header{grid-template-columns:1fr;justify-items:center;text-align:center}.owner{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="core"><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div><div class="ring r4"></div></div>
+    <div>
+      <h1><b>J.A.R.V.I.S.</b> · оргструктура</h1>
+      <div class="sub">Just A Rather Very Intelligent System</div>
+      <div class="owner" id="owner"></div>
+    </div>
+  </header>
+  <div class="mission"><span>Главная задача</span><p id="mission"></p></div>
+  <div class="stats" id="stats"></div>
+  <h2>Отделы</h2>
+  <div class="grid" id="depts"></div>
+  <footer>
+    Нанять отдел — <code>/jarvis:hire</code> · проверить систему — <code>/jarvis:doctor</code> · ревизия штата — <code>/jarvis:review</code><br>
+    <span id="built"></span> · собрано JARVIS на Claude Code · IKIGAI PROMOTION
+  </footer>
+</div>
+<script>
+/*DATA*/
+const JARVIS = {
+  owner: "Имя хозяина",
+  business: "Бизнес, город",
+  clients: "Кто клиенты",
+  mission: "Одна вещь, которую покажем в конце интенсива",
+  built: "14.11.2026",
+  departments: [
+    { name: "Ядро: методики работы", status: "on", for_you: "Сначала план, потом действие; проверка перед словом «готово».", who: "superpowers" },
+    { name: "Исследования", status: "on", for_you: "Поиск в интернете и свежая документация.", who: "exa · context7" },
+    { name: "Документы", status: "on", for_you: "Word, Excel, PowerPoint, PDF — читать и собирать.", who: "document-skills" },
+    { name: "Дизайн страниц", status: "on", for_you: "Страницы и интерфейсы без шаблонного вида.", who: "frontend-design" },
+    { name: "Совет директоров", status: "on", for_you: "Пять мнений перед важным решением.", who: "ceo-council" },
+    { name: "Отдел кадров скиллов", status: "on", for_you: "Собирает новых сотрудников под ваши задачи.", who: "skill-creator · claude-md-management" },
+    { name: "Маркетинг", status: "later", for_you: "Можно нанять: оффер, идеи продвижения, цены.", who: "/jarvis:hire" },
+    { name: "Продажи", status: "off", for_you: "Не нужен прямо сейчас.", who: "" }
+  ]
+};
+/*END*/
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const label = {on:"на месте", later:"можно нанять", off:"не нужен"};
+document.getElementById("owner").innerHTML =
+  [["Хозяин",JARVIS.owner],["Бизнес",JARVIS.business],["Клиенты",JARVIS.clients]]
+  .map(([k,v]) => `<div class="chip"><span>${k}</span>${esc(v)}</div>`).join("");
+document.getElementById("mission").textContent = JARVIS.mission;
+const on = JARVIS.departments.filter(d => d.status === "on").length;
+const later = JARVIS.departments.filter(d => d.status === "later").length;
+document.getElementById("stats").innerHTML =
+  `<div><b>${on}</b>отделов на месте</div><div><b>${later}</b>можно нанять</div><div><b>${JARVIS.departments.length}</b>в оргструктуре</div>`;
+document.getElementById("depts").innerHTML = JARVIS.departments.map(d =>
+  `<div class="dept ${esc(d.status)}"><div class="box"></div><div class="st">${label[d.status] || ""}</div>
+   <h3>${esc(d.name)}</h3><p>${esc(d.for_you)}</p>${d.who ? `<div class="who">${esc(d.who)}</div>` : ""}</div>`).join("");
+document.getElementById("built").textContent = "Собрано " + JARVIS.built;
+</script>
+</body>
+</html>

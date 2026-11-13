@@ -1,0 +1,10 @@
+{
+  "name": "jarvis",
+  "description": "J.A.R.V.I.S. от IKIGAI PROMOTION: Claude Code сам собирает себе штат отделов под ваш бизнес — правила, память, скиллы, доктор и оргструктура",
+  "author": {
+    "name": "Конев Сергей · IKIGAI PROMOTION",
+    "url": "https://ikigaipromotion.kz"
+  },
+  "homepage": "https://github.com/ikigai-promotion-kz/jarvis",
+  "keywords": ["jarvis", "harness", "skills", "onboarding", "business", "ikigai"]
+}
