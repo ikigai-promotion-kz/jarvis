@@ -8,12 +8,14 @@
 - плагин: `claude plugin install <имя>@<маркетплейс>`
 - отдельные скиллы: `npx -y skills add <репозиторий> --skill <имя1> --skill <имя2> -g -a claude-code -y`
 
+Если система не даёт тебе выполнить команду самому — передай её человеку с «!» в начале, ПО ОДНОЙ: одна команда — одно сообщение, «Команда 2 из 4», и жди его «готово». Сначала одной фразой: «скопируйте команду целиком, вставьте в поле ввода, перед „!“ без пробела, Enter».
+
 После каждой установки проверь, что результат появился: `claude plugin list` или папка `~/.claude/skills/<имя>/SKILL.md`. Не появился — повтори команду один раз. Снова нет — запиши в отчёт как «не встало», дальше не импровизируй.
 
 ---
 
 ## Волна 1 — окружение (делает Cursor до запуска Claude Code)
-Git, Node.js + npm, PowerShell 7 (Windows), FFmpeg, сам Claude Code. Смотри промпт `prompts/01-okruzhenie-*.md` в репозитории.
+Git, Node.js + npm, PowerShell 7 (Windows), Python, FFmpeg, сам Claude Code и расширение для Cursor. Windows — скрипт `install-windows.ps1` (ставит из пака JARVIS-PAK или из интернета) по заданию `prompts/01-okruzhenie-windows.txt`; Mac — `prompts/01-okruzhenie-mac.txt`.
 
 ## Волна 2 — ядро (ставится всем, без вопросов)
 

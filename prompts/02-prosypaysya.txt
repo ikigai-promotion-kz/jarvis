@@ -6,12 +6,12 @@
 
 1. Где мы. Покажи текущую папку. Если это домашняя папка, Рабочий стол или корень диска — остановись и скажи мне открыть в Cursor папку Claude (File → Open Folder).
 
-2. Маркетплейсы. Выполни в терминале по очереди:
+2. Ядро ставится командами ниже. Попробуй выполнить их сам, по очереди.
+   Маркетплейсы (магазины, откуда берутся сотрудники):
    claude plugin marketplace add anthropics/claude-plugins-official
    claude plugin marketplace add anthropics/skills
    claude plugin marketplace add ikigai-promotion-kz/jarvis
-
-3. Ядро. Поставь плагины по очереди:
+   Плагины ядра:
    claude plugin install jarvis@jarvis
    claude plugin install superpowers@claude-plugins-official
    claude plugin install context7@claude-plugins-official
@@ -20,13 +20,23 @@
    claude plugin install skill-creator@claude-plugins-official
    claude plugin install claude-md-management@claude-plugins-official
    claude plugin install document-skills@anthropic-agent-skills
-   И скилл совета директоров:
+   Скилл совета директоров:
    npx -y skills add serejaris/personal-corp-os --skill ceo-council -g -a claude-code -y
 
-4. Проверка. Выполни claude plugin list и проверь, что есть файл ~/.claude/skills/ceo-council/SKILL.md. Что не встало — повтори команду один раз. Покажи таблицу: сотрудник | что умеет (одной фразой) | на месте (да/нет).
+3. Если сам выполнить не можешь (система не даёт, команда просит подтверждения, «claude» не запускается изнутри) — передай команды мне. Порядок такой, и только такой:
+   - Сначала объясни одной фразой: «Команду с восклицательным знаком в начале вы выполняете сами: скопируйте её целиком, вставьте в поле ввода внизу, проверьте, что перед „!“ нет пробела, и нажмите Enter».
+   - Давай команды ПО ОДНОЙ: одна команда — одно сообщение, в отдельном блоке, с «!» в начале. Пример: ! claude plugin marketplace add anthropics/claude-plugins-official
+   - Под командой напиши: «Дождитесь, пока команда закончит, и напишите „готово“». Следующую команду давай только после моего «готово» и только посмотрев, что вывела предыдущая. Ошибка — объясни простыми словами и дай исправленную команду.
+   - Пиши номер: «Команда 3 из 12».
+   Запасной путь, если команд по одной не получается или я запутался: одна команда ставит всё ядро сразу (скрипт из нашего репозитория на GitHub, ничего не удаляет):
+   ! powershell -NoProfile -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/ikigai-promotion-kz/jarvis/main/install-core.ps1 | iex"
+   На Mac вместо неё: ! curl -fsSL https://raw.githubusercontent.com/ikigai-promotion-kz/jarvis/main/install-core.sh | bash
+
+4. Проверка. Выполни claude plugin list и проверь, что есть файл ~/.claude/skills/ceo-council/SKILL.md. Что не встало — повтори эту команду один раз (сам или через «!», как в шаге 3). Покажи таблицу: сотрудник | что умеет (одной фразой) | на месте (да/нет). Сотрудников ядра девять: jarvis, superpowers, context7, exa, frontend-design, skill-creator, claude-md-management, document-skills, ceo-council.
 
 5. Папка для материалов. Если в рабочей папке нет inbox — создай её.
 
-6. Итог одной строкой: сколько из 9 сотрудников ядра на месте. Затем скажи мне: перезапусти Claude Code — дважды Ctrl + C, затем claude, — и после перезапуска набери /jarvis:setup.
+6. Итог одной строкой: сколько из 9 сотрудников ядра на месте. Затем скажи мне ровно это:
+   «Новые сотрудники подхватятся только после перезапуска. Нажмите Ctrl + C два раза — Claude Code закроется. Наберите claude и нажмите Enter. Когда он откроется, переключите раскладку на английскую и наберите /jarvis:setup — это знакомство: я задам 5–7 вопросов о вашем бизнесе. Если /jarvis:setup пишет Unknown command — значит, перезапуска не было: повторите Ctrl + C два раза и claude».
 
 КОНЕЦ ЗАДАНИЯ

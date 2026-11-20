@@ -18,7 +18,7 @@ description: Доктор JARVIS — проверить, что все слои 
 | № | Слой | Как проверить |
 |---|---|---|
 | 0 | Рабочая папка | `pwd` / `Get-Location`. Домашняя папка, Рабочий стол или корень диска — красный флаг |
-| 1 | Окружение | `git --version`, `node --version`, `npm --version`, `ffmpeg -version` (первая строка), на Windows `pwsh --version` |
+| 1 | Окружение | `git --version`, `node --version`, `npm --version`, `ffmpeg -version` (первая строка), `python --version`, на Windows `pwsh --version` |
 | 2 | Claude Code | `claude --version`; если есть, `claude doctor` — показать итог |
 | 3 | Ядро | `claude plugin list`: superpowers, context7, exa, frontend-design, skill-creator, claude-md-management, document-skills; папка `~/.claude/skills/ceo-council/SKILL.md` |
 | 4 | Правила | `~/.claude/CLAUDE.md` и `./CLAUDE.md` — есть ли, сколько строк, первые 5 строк |
